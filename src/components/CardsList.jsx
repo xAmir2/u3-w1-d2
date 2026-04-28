@@ -22,8 +22,8 @@ function CardsList({ books }) {
 
           <Card.Body className="d-flex flex-column">
             <Card.Title>{i.title}</Card.Title>
-            <Card.Text>{i.category}</Card.Text>
-            <Card.Text>{i.price} €</Card.Text>
+            <Card.Text>Category: {i.category}</Card.Text>
+            <Card.Text>Price: {i.price}€</Card.Text>
 
             <Button className="mt-auto" variant="success">
               Buy
