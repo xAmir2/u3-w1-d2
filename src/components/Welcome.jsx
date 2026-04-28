@@ -8,7 +8,7 @@ function Welcome() {
 
   return (
     <Alert
-      variant="info"
+      variant="danger"
       onClose={() => setShow(false)}
       dismissible
       className="d-flex justify-content-center m-0"
