@@ -1,35 +1,26 @@
-import { Button, Card } from "react-bootstrap";
+import { useState } from "react";
+import { Form } from "react-bootstrap";
+import SingleCard from "./SingleCard";
 
 function CardsList({ books }) {
+  const [search, setSearch] = useState("");
+
+  const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <>
-      {books.map((i) => (
-        <Card
-          key={i.asin}
-          style={{
-            width: "300px",
-            margin: "10px",
-            backgroundColor: "transparent",
-            color: "white",
-            border: "1px solid white",
-          }}
-        >
-          <Card.Img
-            variant="top"
-            src={i.img}
-            style={{ height: "300px", objectFit: "cover" }}
-          />
+      <Form.Control
+        type="text"
+        placeholder="Search books..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="mb-3"
+      />
 
-          <Card.Body className="d-flex flex-column">
-            <Card.Title>{i.title}</Card.Title>
-            <Card.Text>Category: {i.category}</Card.Text>
-            <Card.Text>Price: {i.price}€</Card.Text>
-
-            <Button className="mt-auto" variant="success">
-              Buy
-            </Button>
-          </Card.Body>
-        </Card>
+      {filteredBooks.map((book) => (
+        <SingleCard key={book.asin} book={book} />
       ))}
     </>
   );
